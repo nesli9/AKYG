@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesapla</title>
+    <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='calculator.css') }}"/>
+</head>
+<body>
+    <h1>Python Flask Hesap Makinesi</h1>
+    <form method="post" action="{{ url_for('operation_result') }}" id="calculator_form">
+        <label for="Giris1">Giriş1:</label>
+        <input type="text" name="Giris1" id="Giris1">
+        <br/>
+        <label for="Giris2">Giriş2:</label>
+        <input type="Giris2" name="Giris2" id="Giris2">
+        <br/>
+        <label for="islem">İşlemler</label>
+        <select id="islem" name="islem">
+            <option value="+">Toplama</option>
+            <option value="-">Çıkarma</option>
+            <option value="/">Bölme</option>
+            <option value="*">Çarpma</option>
+            <option value="%">Mod</option>
+        </select>
+        <br/>
+        <input type="submit" value="Submit"/>
+        <input type="reset"  value="RESET" style="color: red;"/>
+    </form>
+    {% if calculation_success == True %}
+        <br/>
+        <p>Hesaplama {{Giris1}} {{islem}} {{Giris2}} is: {{result}}</p>
+    {% endif %}
+    {% if calculation_success == False %}
+        <br/>
+        <p>{{error}}</p>
+        <p>{{Giris1}} {{islem}} {{Giris2}} = "{{result}}"</p>
+    {% endif %}
+</body>
+</html>
